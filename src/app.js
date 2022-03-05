@@ -6,6 +6,9 @@ playerTwoScore.innerHTML = '0 : Player 2';
 scoreBoard.appendChild(playerOneScore);
 scoreBoard.appendChild(playerTwoScore);
 
+
+const reset = document.getElementById('reset')
+.addEventListener('click', () => console.log('clicked'));
 (() => {
 	// 
 	// __________________________
