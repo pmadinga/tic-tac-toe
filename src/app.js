@@ -1,12 +1,12 @@
+const scoreBoard = document.getElementById('scoreBoard');
+const playerOneScore = document.createElement('h2');
+const playerTwoScore = document.createElement('h2');
+playerOneScore.innerHTML = 'Player 1 : 0';
+playerTwoScore.innerHTML = '0 : Player 2';
+scoreBoard.appendChild(playerOneScore);
+scoreBoard.appendChild(playerTwoScore);
 (() => {
 	// 
-	const scoreBoard = document.getElementById('scoreBoard');
-	const playerOneScore = document.createElement('h2');
-	const playerTwoScore = document.createElement('h2');
-	playerOneScore.innerHTML = 'Player 1 : 0';
-	playerTwoScore.innerHTML = '0 : Player 2';
-	scoreBoard.appendChild(playerOneScore);
-	scoreBoard.appendChild(playerTwoScore);
 	// __________________________
     
 	//get button values
@@ -34,12 +34,14 @@ const players = {
 		isPlaying: true,
 		wins: 0,
 		id: 'one',
+        icon: 'x'
 	},
 	player2: {
         clickedBlocks: [],
         isPlaying: false,
         wins: 0,
-        id: 'two'
+        id: 'two',
+        icon: 'o'
     }
 };
 
@@ -47,20 +49,26 @@ const handleClick = blockProperties => {
     
     blockProperties.disabled = true;
 
-
-    // integerfy 🔥🔥 the block index
+    // integify 🔥🔥 the block index
     const clickedIndex = Number.parseInt(blockProperties.value);
     
     // remove the clicked index from allBlocks
     removeIndex(clickedIndex);
     
     // switch between the players
-    players.player1.isPlaying ? handlePlayer(players.player1, clickedIndex) : handlePlayer(players.player2, clickedIndex);
-
-    
+    players.player1.isPlaying ? 
+    handlePlayer(players.player1, clickedIndex, blockProperties) : 
+    handlePlayer(players.player2, clickedIndex, blockProperties);
 };
 
-const handlePlayer = (player, index) =>{
+const removeIndex = clickedIndex =>{
+    
+    if(allBlocks.indexOf(clickedIndex) > -1){
+        return allBlocks.splice(allBlocks.indexOf(clickedIndex), 1);
+    }
+    
+};
+const handlePlayer = (player, index, blockProperties) =>{
     if(player.id === 'one'){
         // invert isPlaying state
         players.player1.isPlaying = !players.player1.isPlaying;
@@ -68,26 +76,23 @@ const handlePlayer = (player, index) =>{
         
         // append the clicked index to each players array
         players.player1.clickedBlocks.push(index);
-
         
+        handlerPlayerIcon(blockProperties, players.player1.icon); 
     }else{
         // invert isPlaying state
         players.player1.isPlaying = !players.player1.isPlaying;
         players.player2.isPlaying = !players.player2.isPlaying;
-               
+        
         // append the clicked index to each players array
         players.player2.clickedBlocks.push(index);
-
+        
+        handlerPlayerIcon(blockProperties, players.player2.icon); 
     }
-    console.log(({player}));
+    // console.log(({player}));
 
     // console.log(`Player 1 ${players. player1.isPlaying}\nPlayer 2 ${players. player2.isPlaying}`)
 };
 
-const removeIndex = clickedIndex =>{
-
-    if(allBlocks.indexOf(clickedIndex) > -1){
-        return allBlocks.splice(allBlocks.indexOf(clickedIndex), 1);
-    }
-    
+const handlerPlayerIcon = (block, icon) =>{
+    block.innerText = icon;
 };
