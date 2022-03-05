@@ -59,3 +59,24 @@ nav h1{
     color: #f7f7f7;
     cursor: default;
 }
+.resetContainer{
+    justify-content: center;
+}
+.reset{
+    background-color: #551b25;
+    width: fit-content;
+    margin: auto;
+    padding: 0 2rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5rem;
+}
+.reset span{
+    color: #fff;
+    font-weight: 700;
+    font-size: 3.5rem;
+}
+.reset:hover{
+    background-color: #7e2d39;
+    transform: scale(1.01);
+}

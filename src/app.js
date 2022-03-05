@@ -5,6 +5,7 @@ playerOneScore.innerHTML = 'Player 1 : 0';
 playerTwoScore.innerHTML = '0 : Player 2';
 scoreBoard.appendChild(playerOneScore);
 scoreBoard.appendChild(playerTwoScore);
+
 (() => {
 	// 
 	// __________________________
@@ -15,7 +16,7 @@ scoreBoard.appendChild(playerTwoScore);
 	});
 })();
 
-const allBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let allBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 const winningBlocks = {
 	one: [0, 1, 2],
@@ -34,19 +35,20 @@ const players = {
 		isPlaying: true,
 		wins: 0,
 		id: 'one',
-        icon: 'x'
+        icon: 'x',
+        winner: 'false'
 	},
 	player2: {
         clickedBlocks: [],
         isPlaying: false,
         wins: 0,
         id: 'two',
-        icon: 'o'
+        icon: 'o',
+        winner: 'false'
     }
 };
 
 const handleClick = blockProperties => {
-    
     blockProperties.disabled = true;
 
     // integify 🔥🔥 the block index
@@ -77,7 +79,10 @@ const handlePlayer = (player, index, blockProperties) =>{
         // append the clicked index to each players array
         players.player1.clickedBlocks.push(index);
         
-        handlerPlayerIcon(blockProperties, players.player1.icon); 
+        handlerPlayerIcon(blockProperties, players.player1.icon);
+        if (players.player1.clickedBlocks.length >= 3) {
+            handleWinner(players.player1.clickedBlocks);
+        }
     }else{
         // invert isPlaying state
         players.player1.isPlaying = !players.player1.isPlaying;
@@ -87,6 +92,9 @@ const handlePlayer = (player, index, blockProperties) =>{
         players.player2.clickedBlocks.push(index);
         
         handlerPlayerIcon(blockProperties, players.player2.icon); 
+        if (players.player2.clickedBlocks.length >= 3) {
+            handleWinner(players.player2.clickedBlocks);
+        }
     }
     // console.log(({player}));
 
@@ -95,4 +103,19 @@ const handlePlayer = (player, index, blockProperties) =>{
 
 const handlerPlayerIcon = (block, icon) =>{
     block.innerText = icon;
+};
+
+const handleWinner = playerClickedBlock =>{
+    
+    for (const arr in winningBlocks) {
+            const result = winningBlocks[arr].filter(match => playerClickedBlock.includes(match));
+            if (result === playerClickedBlock) {
+                console.log('sjot');
+            }
+
+    }
+};
+
+const resetAllBlock = () =>{
+    allBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 };
