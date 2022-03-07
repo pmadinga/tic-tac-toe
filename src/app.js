@@ -1,6 +1,7 @@
 const scoreBoard = document.getElementById('scoreBoard');
 
 const playerOneScore = document.createElement('h2');
+playerOneScore.classList.add('activePlayer')
 const playerTwoScore = document.createElement('h2');
 playerOneScore.innerHTML = 'Player 1 : 0';
 playerTwoScore.innerHTML = '0 : Player 2';

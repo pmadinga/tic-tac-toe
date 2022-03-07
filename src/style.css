@@ -30,6 +30,7 @@ nav h1{
 }
 .activePlayer{
     background-color: #ffc4c4;
+    transition: 0.2s ease-in-out;
 
 }
 
