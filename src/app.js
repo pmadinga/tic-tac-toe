@@ -7,9 +7,15 @@ scoreBoard.appendChild(playerOneScore);
 scoreBoard.appendChild(playerTwoScore);
 
 
+<<<<<<< HEAD
 document.getElementById('reset')
 .addEventListener('click', () => Object.prototype= undefined);
 const init = () => {
+=======
+const reset = document.getElementById('reset')
+.addEventListener('click', () => console.log('clicked'));
+(() => {
+>>>>>>> 430521ea8f96c4d32f46148acc4b7ffae537dcc1
 	// 
 	// __________________________
     
