@@ -6,7 +6,10 @@ playerTwoScore.innerHTML = '0 : Player 2';
 scoreBoard.appendChild(playerOneScore);
 scoreBoard.appendChild(playerTwoScore);
 
-(() => {
+
+document.getElementById('reset')
+.addEventListener('click', () => Object.prototype= undefined);
+const init = () => {
 	// 
 	// __________________________
     
@@ -14,7 +17,7 @@ scoreBoard.appendChild(playerTwoScore);
 	document.querySelector('.gridContainer').addEventListener('click', (e) => {
 		handleClick(e.target); 
 	});
-})();
+};
 
 let allBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -83,6 +86,8 @@ const handlePlayer = (player, index, blockProperties) =>{
         if (players.player1.clickedBlocks.length >= 3) {
             handleWinner(players.player1.clickedBlocks);
         }
+        // playerOneScore.classList.add('activePlayer');
+        // playerTwoScore.classList.remove('activePLayer');
     }else{
         // invert isPlaying state
         players.player1.isPlaying = !players.player1.isPlaying;
@@ -95,9 +100,11 @@ const handlePlayer = (player, index, blockProperties) =>{
         if (players.player2.clickedBlocks.length >= 3) {
             handleWinner(players.player2.clickedBlocks);
         }
+        playerTwoScore.classList.add('activePlayer');
+        playerOneScore.classList.remove('activePLayer');
     }
     // console.log(({player}));
-
+    
     // console.log(`Player 1 ${players. player1.isPlaying}\nPlayer 2 ${players. player2.isPlaying}`)
 };
 
@@ -106,16 +113,14 @@ const handlerPlayerIcon = (block, icon) =>{
 };
 
 const handleWinner = playerClickedBlock =>{
-    
-    for (const arr in winningBlocks) {
-            const result = winningBlocks[arr].filter(match => playerClickedBlock.includes(match));
-            if (result === playerClickedBlock) {
-                console.log('sjot');
-            }
-
+    for (let i = 0; i < winningBlocks.length; i++) {
+        const element = winningBlocks[i];
+        console.log(element);
     }
 };
 
 const resetAllBlock = () =>{
     allBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 };
+
+init();

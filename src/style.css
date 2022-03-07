@@ -25,7 +25,12 @@ nav h1{
     margin: 1rem 5%;
 }
 .score h2{
-    justify-content: space-between;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+.activePlayer{
+    background-color: #ffc4c4;
+
 }
 
 /* _____________________ */
@@ -70,6 +75,7 @@ nav h1{
     cursor: pointer;
     transition: 0.3s ease-in-out;
     border-radius: 0.5rem;
+    user-select: none;
 }
 .reset span{
     color: #fff;
