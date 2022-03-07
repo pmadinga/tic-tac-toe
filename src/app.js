@@ -1,4 +1,5 @@
 const scoreBoard = document.getElementById('scoreBoard');
+
 const playerOneScore = document.createElement('h2');
 const playerTwoScore = document.createElement('h2');
 playerOneScore.innerHTML = 'Player 1 : 0';
@@ -7,15 +8,9 @@ scoreBoard.appendChild(playerOneScore);
 scoreBoard.appendChild(playerTwoScore);
 
 
-<<<<<<< HEAD
 document.getElementById('reset')
 .addEventListener('click', () => Object.prototype= undefined);
 const init = () => {
-=======
-const reset = document.getElementById('reset')
-.addEventListener('click', () => console.log('clicked'));
-(() => {
->>>>>>> 430521ea8f96c4d32f46148acc4b7ffae537dcc1
 	// 
 	// __________________________
     
@@ -92,8 +87,8 @@ const handlePlayer = (player, index, blockProperties) =>{
         handlerPlayerIcon(blockProperties, players.player1.icon);
         handleWinner(players.player1.clickedBlocks);
 
-        // playerOneScore.classList.add('activePlayer');
-        // playerTwoScore.classList.remove('activePLayer');
+        playerOneScore.classList.add('activePlayer');
+        playerTwoScore.classList.remove('activePlayer');
     }else{
         // invert isPlaying state
         players.player1.isPlaying = !players.player1.isPlaying;
@@ -105,13 +100,14 @@ const handlePlayer = (player, index, blockProperties) =>{
         handlerPlayerIcon(blockProperties, players.player2.icon); 
 
             handleWinner(players.player2.clickedBlocks);
-        // playerTwoScore.classList.add('activePlayer');
-        // playerOneScore.classList.remove('activePLayer');
+        playerTwoScore.classList.add('activePlayer');
+        playerOneScore.classList.remove('activePlayer');
     }
     // console.log(({player}));
     
     // console.log(`Player 1 ${players. player1.isPlaying}\nPlayer 2 ${players. player2.isPlaying}`)
 };
+
 
 const handlerPlayerIcon = (block, icon) =>{
     block.innerText = icon;
