@@ -21,16 +21,17 @@ const init = () => {
 
 let allBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-const winningBlocks = {
-	one: [0, 1, 2],
-	two: [3, 4, 5],
-	three: [6, 7, 8],
-	four: [0, 3, 6],
-	five: [1, 4, 7], 
-	six: [2, 5, 8],
-	seven: [2, 4, 6],
-	eight: [0, 4, 8]
-};
+const winningBlocks =[ 
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7], 
+	[2, 5, 8],
+	[2, 4, 6],
+	[0, 4, 8]
+];
+
 
 const players = {
 	player1: {
@@ -83,9 +84,8 @@ const handlePlayer = (player, index, blockProperties) =>{
         players.player1.clickedBlocks.push(index);
         
         handlerPlayerIcon(blockProperties, players.player1.icon);
-        if (players.player1.clickedBlocks.length >= 3) {
-            handleWinner(players.player1.clickedBlocks);
-        }
+        handleWinner(players.player1.clickedBlocks);
+
         // playerOneScore.classList.add('activePlayer');
         // playerTwoScore.classList.remove('activePLayer');
     }else{
@@ -97,11 +97,10 @@ const handlePlayer = (player, index, blockProperties) =>{
         players.player2.clickedBlocks.push(index);
         
         handlerPlayerIcon(blockProperties, players.player2.icon); 
-        if (players.player2.clickedBlocks.length >= 3) {
+
             handleWinner(players.player2.clickedBlocks);
-        }
-        playerTwoScore.classList.add('activePlayer');
-        playerOneScore.classList.remove('activePLayer');
+        // playerTwoScore.classList.add('activePlayer');
+        // playerOneScore.classList.remove('activePLayer');
     }
     // console.log(({player}));
     
@@ -113,10 +112,14 @@ const handlerPlayerIcon = (block, icon) =>{
 };
 
 const handleWinner = playerClickedBlock =>{
-    for (let i = 0; i < winningBlocks.length; i++) {
-        const element = winningBlocks[i];
-        console.log(element);
+    console.log(playerClickedBlock);
+    if(winningBlocks[0].includes(...playerClickedBlock)){
+        console.log('match');
+    }else{
+        console.log('no matsh');
     }
+    
+
 };
 
 const resetAllBlock = () =>{
