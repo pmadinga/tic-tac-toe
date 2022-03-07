@@ -38,18 +38,21 @@ const players = {
 	player1: {
 		clickedBlocks: [],
 		isPlaying: true,
+        isWinner: false,
 		wins: 0,
 		id: 'one',
         icon: 'x',
-        winner: 'false'
+        
+        
 	},
 	player2: {
         clickedBlocks: [],
         isPlaying: false,
+        isWinner: false,
         wins: 0,
         id: 'two',
         icon: 'o',
-        winner: 'false'
+        
     }
 };
 
@@ -69,11 +72,9 @@ const handleClick = blockProperties => {
 };
 
 const removeIndex = clickedIndex =>{
-    
     if(allBlocks.indexOf(clickedIndex) > -1){
         return allBlocks.splice(allBlocks.indexOf(clickedIndex), 1);
     }
-    
 };
 const handlePlayer = (player, index, blockProperties) =>{
     if(player.id === 'one'){
@@ -98,14 +99,10 @@ const handlePlayer = (player, index, blockProperties) =>{
         players.player2.clickedBlocks.push(index);
         
         handlerPlayerIcon(blockProperties, players.player2.icon); 
-
-            handleWinner(players.player2.clickedBlocks);
+        handleWinner(players.player2.clickedBlocks);
         playerTwoScore.classList.add('activePlayer');
         playerOneScore.classList.remove('activePlayer');
     }
-    // console.log(({player}));
-    
-    // console.log(`Player 1 ${players. player1.isPlaying}\nPlayer 2 ${players. player2.isPlaying}`)
 };
 
 
@@ -114,13 +111,16 @@ const handlerPlayerIcon = (block, icon) =>{
 };
 
 const handleWinner = playerClickedBlock =>{
-    console.log(playerClickedBlock);
-    if(winningBlocks[0].includes(...playerClickedBlock)){
-        console.log('match');
-    }else{
-        console.log('no matsh');
-    }
-    
+    playerClickedBlock.sort((a, b) => a - b) 
+    winningBlocks.forEach(element => {
+        if(JSON.stringify(playerClickedBlock).includes(JSON.stringify(element))){
+            console.log('====================================');
+            console.log('Matches');
+            console.log('====================================');
+
+        }
+        
+    });
 
 };
 
